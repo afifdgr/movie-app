@@ -36,4 +36,4 @@ Route::middleware([
 
 Route::get('/admin', function () {
     return Inertia::render('Admin/Index');
-});
+})->name('admin.index');
