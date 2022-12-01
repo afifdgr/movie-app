@@ -62,6 +62,4 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('admin')->
     Route::resource('/casts', CastController::class);
 
     Route::resource('/tags', TagController::class);
-
-    Route::resource('/movies', MovieController::class);
 });
