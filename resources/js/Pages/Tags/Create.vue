@@ -1,8 +1,8 @@
 <template>
-    <AdminLayout title="Tags">
+    <AdminLayout title="Tags Create">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Tags Index
+                Tags Create
             </h2>
         </template>
 
@@ -10,8 +10,8 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <section class="container mx-auto p-6 font-mono">
                     <div class="w-full flex mb-4 p-2 justify-end">
-                        <Link :href="route('admin.tags.create')"
-                            class="px-4 py-2 bg-green-600 hover:bg-green-800 text-white">Create Tag
+                        <Link :href="route('admin.tags.index')"
+                            class="px-4 py-2 bg-red-600 hover:bg-red-800 text-white">Back
                         </Link>
                     </div>
 
@@ -27,61 +27,29 @@
                                     </svg>
                                 </div>
 
-                                <input type="text" placeholder="Search by title" class="
-                    px-8
-                    py-3
-                    w-full
-                    md:w-2/6
-                    rounded-md
-                    bg-gray-100
-                    border-transparent
-                    focus:border-gray-500 focus:bg-white focus:ring-0
-                    text-sm
-                  " />
+                                <input type="text" placeholder="Search by title"
+                                    class="px-8 py-3 w-full md:w-2/6 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm" />
                             </div>
 
                             <div class="flex justify-between mt-4">
                                 <p class="font-medium">Filters</p>
 
-                                <button class="
-                    px-4
-                    py-2
-                    bg-gray-100
-                    hover:bg-gray-200
-                    text-gray-800 text-sm
-                    font-medium
-                    rounded-md
-                  ">
+                                <button
+                                    class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium rounded-md">
                                     Reset Filter
                                 </button>
                             </div>
 
                             <div>
                                 <div class="flex justify-between space-x-4 mt-4">
-                                    <select class="
-                      px-4
-                      py-3
-                      w-full
-                      rounded-md
-                      bg-gray-100
-                      border-transparent
-                      focus:border-gray-500 focus:bg-white focus:ring-0
-                      text-sm
-                    ">
+                                    <select
+                                        class="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
                                         <option value="asc">Asc</option>
                                         <option value="desc">Desc</option>
                                     </select>
 
-                                    <select class="
-                      px-4
-                      py-3
-                      w-full
-                      rounded-md
-                      bg-gray-100
-                      border-transparent
-                      focus:border-gray-500 focus:bg-white focus:ring-0
-                      text-sm
-                    ">
+                                    <select
+                                        class="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
                                         <option value="5">5 Per Page</option>
                                         <option value="10">10 Per Page</option>
                                         <option value="15">15 Per Page</option>
@@ -93,15 +61,8 @@
                         <div class="w-full overflow-x-auto">
                             <table class="w-full">
                                 <thead>
-                                    <tr class="
-                      text-md
-                      font-semibold
-                      tracking-wide
-                      text-left text-gray-900
-                      bg-gray-100
-                      uppercase
-                      border-b border-gray-600
-                    ">
+                                    <tr
+                                        class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
                                         <th class="px-4 py-3">Name</th>
                                         <th class="px-4 py-3">Slug</th>
                                         <th class="px-4 py-3">Manage</th>
@@ -109,28 +70,19 @@
                                 </thead>
                                 <tbody class="bg-white">
                                     <tr class="text-gray-700">
-                                        <td class="px-4 py-3 border">tag_name</td>
-                                        <td class="px-4 py-3 text-ms font-semibold border">slug</td>
+                                        <td class="px-4 py-3 border">
+                                            tag_name
+                                        </td>
+                                        <td class="px-4 py-3 text-ms font-semibold border">
+                                            slug
+                                        </td>
 
                                         <td class="flex justify-around px-4 py-3 text-sm border">
-                                            <button class="
-                          bg-green-500
-                          hover:bg-green-700
-                          text-white
-                          px-4
-                          py-2
-                          rounded-lg
-                        ">
+                                            <button
+                                                class="bg-green-500 hover:bg-green-700 text-white px-4 py-2 rounded-lg">
                                                 Edit
                                             </button>
-                                            <button class="
-                          bg-red-500
-                          hover:bg-red-700
-                          text-white
-                          px-4
-                          py-2
-                          rounded-lg
-                        ">
+                                            <button class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded-lg">
                                                 Delete
                                             </button>
                                         </td>
