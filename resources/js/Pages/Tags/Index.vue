@@ -77,7 +77,9 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div class="m-2 p-2">links</div>
+                                <div class="m-2 p-2">
+                                    <Pagination :links="tags.links" />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -90,6 +92,7 @@
 <script setup>
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import { Link } from "@inertiajs/inertia-vue3";
+import Pagination from '@/Components/Pagination.vue';
 
 const props = defineProps({
     tags: Object,
