@@ -37,9 +37,15 @@
                                     <div class="flex">
                                         <select v-model="perPage" @change="getTags"
                                             class="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
-                                            <option value="5">5 Per Page</option>
-                                            <option value="10">10 Per Page</option>
-                                            <option value="15">15 Per Page</option>
+                                            <option value="5">
+                                                5 Per Page
+                                            </option>
+                                            <option value="10">
+                                                10 Per Page
+                                            </option>
+                                            <option value="15">
+                                                15 Per Page
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -65,14 +71,20 @@
                                             </td>
 
                                             <td class="flex justify-around px-4 py-3 text-sm border">
-                                                <button
+                                                <Link :href="
+                                                    route(
+                                                        'admin.tags.edit',
+                                                        tag.id
+                                                    )
+                                                "
                                                     class="bg-green-500 hover:bg-green-700 text-white px-4 py-2 rounded-lg">
-                                                    Edit
-                                                </button>
-                                                <button
+                                                Edit
+                                                </Link>
+                                                <Link :href="route('admin.tags.destroy', tag.id)" method="delete"
+                                                    as="button" type="button"
                                                     class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded-lg">
-                                                    Delete
-                                                </button>
+                                                Delete
+                                                </Link>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -92,30 +104,38 @@
 <script setup>
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import { Link } from "@inertiajs/inertia-vue3";
-import Pagination from '@/Components/Pagination.vue';
-import { ref, watch, defineProps } from 'vue';
+import Pagination from "@/Components/Pagination.vue";
+import { ref, watch, defineProps } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 
 const props = defineProps({
     tags: Object,
-    filters: Object
-})
+    filters: Object,
+});
 
 const search = ref(props.filters.search);
 const perPage = ref(5);
 
 watch(search, (value) => {
-    Inertia.get("/admin/tags", { search: value, perPage: perPage.value }, {
-        preserveState: true,
-        replace: true
-    });
+    Inertia.get(
+        "/admin/tags",
+        { search: value, perPage: perPage.value },
+        {
+            preserveState: true,
+            replace: true,
+        }
+    );
 });
 
 function getTags() {
-    Inertia.get("/admin/tags", { perPage: perPage.value, search: search.value }, {
-        preserveState: true,
-        replace: true
-    });
+    Inertia.get(
+        "/admin/tags",
+        { perPage: perPage.value, search: search.value },
+        {
+            preserveState: true,
+            replace: true,
+        }
+    );
 }
 </script>
 
