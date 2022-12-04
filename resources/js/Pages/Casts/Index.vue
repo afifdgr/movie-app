@@ -10,9 +10,43 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <section class="container mx-auto p-6 font-mono">
                     <div class="w-full flex mb-4 p-2 justify-end">
-                        <Link :href="route('admin.casts.create')"
-                            class="px-4 py-2 bg-green-600 hover:bg-green-800 text-white">Create Casts
-                        </Link>
+                        <form class="flex space-x-4 shadow bg-white rounded-md m-2 p-2">
+                            <div class="p-1 flex items-center">
+                                <label for="tmdb_id_g" class="block text-sm font-medium text-gray-700 mr-4">Cast Tmdb
+                                    Id</label>
+                                <div class="relative rounded-md shadow-sm">
+                                    <input v-model="castTMDBId" id="tmdb_id_g" name="tmdb_id_g"
+                                        class="px-3 py-2 border border-gray-300 rounded" placeholder="Cast ID" />
+                                </div>
+                            </div>
+                            <div class="p-1">
+                                <button type="button" @click="generateCast" class="
+                    inline-flex
+                    items-center
+                    justify-center
+                    py-2
+                    px-4
+                    border border-transparent
+                    text-base
+                    leading-6
+                    font-medium
+                    rounded-md
+                    text-white
+                    bg-green-600
+                    hover:bg-green-500
+                    focus:outline-none
+                    focus:border-indigo-700
+                    focus:shadow-outline-indigo
+                    active:bg-green-700
+                    transition
+                    duration-150
+                    ease-in-out
+                    disabled:opacity-50
+                  ">
+                                    <span>Generate</span>
+                                </button>
+                            </div>
+                        </form>
                     </div>
 
                     <div class="w-full mb-8 overflow-hidden bg-white rounded-lg shadow-lg">
@@ -30,22 +64,33 @@
                                                 </svg>
                                             </div>
 
-                                            <input v-model="search" type="text" placeholder="Search by name"
-                                                class="px-8 py-3 w-full md:w-2/6 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm" />
+                                            <input v-model="search" type="text" placeholder="Search by name" class="
+                          px-8
+                          py-3
+                          w-full
+                          md:w-2/6
+                          rounded-md
+                          bg-gray-100
+                          border-transparent
+                          focus:border-gray-500 focus:bg-white focus:ring-0
+                          text-sm
+                        " />
                                         </div>
                                     </div>
                                     <div class="flex">
-                                        <select v-model="perPage" @change="getCasts"
-                                            class="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
-                                            <option value="5">
-                                                5 Per Page
-                                            </option>
-                                            <option value="10">
-                                                10 Per Page
-                                            </option>
-                                            <option value="15">
-                                                15 Per Page
-                                            </option>
+                                        <select v-model="perPage" @change="getCasts" class="
+                        px-4
+                        py-3
+                        w-full
+                        rounded-md
+                        bg-gray-100
+                        border-transparent
+                        focus:border-gray-500 focus:bg-white focus:ring-0
+                        text-sm
+                      ">
+                                            <option value="5">5 Per Page</option>
+                                            <option value="10">10 Per Page</option>
+                                            <option value="15">15 Per Page</option>
                                         </select>
                                     </div>
                                 </div>
@@ -54,8 +99,15 @@
                             <div class="w-full overflow-x-auto">
                                 <table class="w-full">
                                     <thead>
-                                        <tr
-                                            class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
+                                        <tr class="
+                        text-md
+                        font-semibold
+                        tracking-wide
+                        text-left text-gray-900
+                        bg-gray-100
+                        uppercase
+                        border-b border-gray-600
+                      ">
                                             <th class="px-4 py-3">Name</th>
                                             <th class="px-4 py-3">Slug</th>
                                             <th class="px-4 py-3">Poster</th>
@@ -75,18 +127,25 @@
                                             </td>
 
                                             <td class="flex justify-around px-4 py-3 text-sm border">
-                                                <Link :href="
-                                                    route(
-                                                        'admin.casts.edit',
-                                                        cast.id
-                                                    )
-                                                "
-                                                    class="bg-green-500 hover:bg-green-700 text-white px-4 py-2 rounded-lg">
+                                                <Link :href="route('admin.casts.edit', cast.id)" class="
+                            bg-green-500
+                            hover:bg-green-700
+                            text-white
+                            px-4
+                            py-2
+                            rounded-lg
+                          ">
                                                 Edit
                                                 </Link>
                                                 <Link :href="route('admin.casts.destroy', cast.id)" method="delete"
-                                                    as="button" type="button"
-                                                    class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded-lg">
+                                                    as="button" type="button" class="
+                            bg-red-500
+                            hover:bg-red-700
+                            text-white
+                            px-4
+                            py-2
+                            rounded-lg
+                          ">
                                                 Delete
                                                 </Link>
                                             </td>
@@ -119,6 +178,7 @@ const props = defineProps({
 
 const search = ref(props.filters.search);
 const perPage = ref(5);
+const castTMDBId = ref('');
 
 watch(search, (value) => {
     Inertia.get(
@@ -140,6 +200,10 @@ function getCasts() {
             replace: true,
         }
     );
+}
+
+function generateCast() {
+    Inertia.post('/admin/casts', { castTMDBId: castTMDBId.value });
 }
 </script>
 
