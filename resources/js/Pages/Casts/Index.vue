@@ -171,6 +171,7 @@ import Pagination from "@/Components/Pagination.vue";
 import { ref, watch, defineProps } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 
+
 const props = defineProps({
     casts: Object,
     filters: Object,
